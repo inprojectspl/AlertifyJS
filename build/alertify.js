@@ -3570,6 +3570,7 @@
                 type:'text',
                 reverseButtons: undefined,
                 placeholder: undefined,
+                attributes: undefined,
             },
             settingUpdated: function (key, oldValue, newValue) {
                 switch (key) {
@@ -3602,6 +3603,16 @@
                     break;
                 case 'placeholder':
                     input.placeholder = newValue;
+                    break;
+                case 'attributes':
+                    if (Array.isArray(newValue)) {
+                        newValue.forEach(attr => {
+                            if (Object(attr).hasOwnProperty('name') && Object(attr).hasOwnProperty('value')) {
+                                const {name, value} = attr
+                                input.setAttribute(name, value)
+                            }
+                        })
+                    }
                     break;
                 case 'labels':
                     if (newValue.ok && this.__internal.buttons[0].element) {
