@@ -100,6 +100,7 @@
                 value: '',
                 type:'text',
                 reverseButtons: undefined,
+                placeholder: undefined,
             },
             settingUpdated: function (key, oldValue, newValue) {
                 switch (key) {
@@ -129,6 +130,9 @@
                         input.type = 'text';
                         break;
                     }
+                    break;
+                case 'placeholder':
+                    input.placeholder = newValue;
                     break;
                 case 'labels':
                     if (newValue.ok && this.__internal.buttons[0].element) {
